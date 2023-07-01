@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导出存档</title>
+    <style>
+        html,body{
+            height: 100%;
+            overflow: hidden;
+        }
+        textarea{
+            width: 90%;
+            height: 60%;
+        }
+        button{
+            padding: 5px;
+            font-size: large;
+        }
+        
+    </style>
+</head>
+<body>
+    <textarea placeholder="导入/导出存档" id="textarea"></textarea><br>
+    <button onclick="Object.assign(ls,JSON.parse(textarea.value));div.innerText='导入成功'">导入存档</button>
+    <button onclick="fn()">查看/导出存档</button>
+    <button onclick="ls.clear();div.innerText ='清除成功'">清除存档</button>
+    <div id="div"></div>
+</body>
+<script>
+    ls = localStorage;
+    function fn(){
+        var t = document.createElement('textarea');
+        t.value = JSON.stringify(ls);
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand('Copy') && (div.innerText ='已复制到剪切板');
+        textarea.value = t.value;
+        document.body.removeChild(t);
+    }
+</script>
+</html>

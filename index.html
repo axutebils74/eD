@@ -29,6 +29,9 @@
 </body>
 <script>
     ls = localStorage;
+    onerror = function(e){
+        div.innerText =  e
+    }
     function fn(){
         var t = document.createElement('textarea');
         t.value = JSON.stringify(ls);
